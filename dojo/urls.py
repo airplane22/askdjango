@@ -1,5 +1,6 @@
 from django.urls import path,re_path
 from . import views
+from . import views_cbv
 
 urlpatterns = [
     re_path(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
@@ -9,5 +10,11 @@ urlpatterns = [
     path('post_list2/', views.post_list2),
     path('post_list3/', views.post_list3),
     path('excel/', views.excel_download),
+
+    # path('cbv/post_list1/', views_cbv.post_list1),
+    # path('cbv/post_list2/', views_cbv.post_list2),
+    # path('cbv/post_list3/', views_cbv.post_list3),
+    # path('cbv/excel/', views_cbv.excel_download),
+
 
 ]
