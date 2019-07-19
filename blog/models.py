@@ -11,7 +11,8 @@ def lnglat_validator(value):
 
 class Post(models.Model):
     # 길이 제한이 있는 문자열-Charfield
-    name = models.CharField(max_length=100, verbose_name='제목',
+    author = models.CharField(max_length=20) #migration-option2에서 default or 1에서 입력안될때 default anonymous, 입력되면 입력값
+    title = models.CharField(max_length=100, verbose_name='제목',
                              help_text='포스팅 제목을 입력해주세요.(100자 내외)')
     content = models.TextField(verbose_name='내용')            #길이 제한이 없는 문자열-Textfield
     tags = models.CharField(max_length=100, blank=True)
