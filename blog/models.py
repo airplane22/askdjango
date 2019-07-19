@@ -30,3 +30,6 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #날짜와 시간을 저장 (처음 생겼을때 일시저장autonowadd)
     updated_at = models.DateTimeField(auto_now=True) #날짜와 시간을 저장(바뀔때마다 시간 저장 autonow)
 
+
+    def __str__(self):
+        return self.title
