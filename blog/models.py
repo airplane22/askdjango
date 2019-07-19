@@ -30,6 +30,9 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True) #날짜와 시간을 저장 (처음 생겼을때 일시저장autonowadd)
     updated_at = models.DateTimeField(auto_now=True) #날짜와 시간을 저장(바뀔때마다 시간 저장 autonow)
 
+    class Meta:
+        ordering = ['-id'] #필드옵션 여러개 줄수있지만 한두개가 query 성능 높여줌
+
 
     def __str__(self):
         return self.title
