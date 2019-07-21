@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.utils.safestring import mark_safe
 
-from .models import Post, Comment
+from .models import Post, Comment, Tag
 
 #post를 커스텀하기
 
@@ -39,3 +39,8 @@ def make_draft(self, request, queryset):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    list_display = ['name']
+
