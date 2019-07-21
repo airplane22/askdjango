@@ -27,7 +27,7 @@ class Post(models.Model):
     lnglat = models.CharField(max_length=50, blank=True,
                               validators=[lnglat_validator], help_text='경도,위도 포맷으로 입력')
     status = models.CharField(max_length=1, choices=STATUS_CHOICES)
-    tag_set = models.ManyToManyField('Tag') #field에서 relation 지정할때 문자열로(뒤에 있을때??) 다른모델일때 - 앱이름.클래스이름
+    tag_set = models.ManyToManyField('Tag', blank=True) #field에서 relation 지정할때 문자열로(뒤에 있을때??) 다른모델일때 - 앱이름.클래스이름
     created_at = models.DateTimeField(auto_now_add=True) #날짜와 시간을 저장 (처음 생겼을때 일시저장autonowadd)
     updated_at = models.DateTimeField(auto_now=True) #날짜와 시간을 저장(바뀔때마다 시간 저장 autonow)
 
