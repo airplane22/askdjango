@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.utils.safestring import mark_safe
 
-from .models import Post
+from .models import Post, Comment
 
 #post를 커스텀하기
 
@@ -34,3 +34,8 @@ def make_draft(self, request, queryset):
 
 #register 두번 할 수 없음! 이미 register된 것을 unregister 하고 register 해야 함
 #언제한다고??
+
+
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    pass
