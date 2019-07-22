@@ -14,15 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import include, path, re_path
 from django.conf import settings
 
+def root(request):
+    return redirect('blog:post_list')  #최상위 주소에서 blog로 이동 (아래urlpatterns 참고), 아예 lambda로(14강 22:00참고)
+
 urlpatterns = [
+    path('',root, name='root'),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    path('blog/', include('blog.urls')),
-    path('dojo/', include('dojo.urls')),
-    path('shop/', include('shop.urls')),
+    path('blog/', include(('blog.urls','blog'), namespace='blog')),
+    path('dojo/', include(('dojo.urls','dojo'), namespace='dojo')),
+    path('shop/', include(('shop.urls','shop'), namespace='shop')),
 
 
 ]

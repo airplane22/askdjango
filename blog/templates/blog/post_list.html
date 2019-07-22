@@ -13,7 +13,7 @@
     <li>
     {{post.id}}
 
-        <a href="{% url "post_detail" post.id %}"> <!--인자넘기는것 주의!-->
+        <a href="{% url "blog:post_detail" post.id %}"> <!--인자넘기는것 주의!-->
             {{ post.title }}
         </a>
 
