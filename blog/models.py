@@ -1,4 +1,6 @@
 import re
+
+from django.conf import settings
 from django.db import models
 from django.forms import ValidationError
 # Create your models here.
@@ -18,8 +20,8 @@ class Post(models.Model):
         ('w', 'Withdrawn'),
     )
 
-
-    author = models.CharField(max_length=20) #migration-option2에서 default or 1에서 입력안될때 default anonymous, 입력되면 입력값
+    #author = models.CharField(max_length=20) #migration-option2에서 default or 1에서 입력안될때 default anonymous, 입력되면 입력값
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
     title = models.CharField(max_length=100, verbose_name='제목',
                              help_text='포스팅 제목을 입력해주세요.(100자 내외)')
     content = models.TextField(verbose_name='내용')            #길이 제한이 없는 문자열-Textfield
