@@ -12,9 +12,11 @@
 {% for post in post_list %}
     <li>
     {{post.id}}
-        <a href="/blog/{{ post.id }}">
-            {{post.title}}
+
+        <a href="{% url "post_detail" post.id %}"> <!--인자넘기는것 주의!-->
+            {{ post.title }}
         </a>
+
 
     <small>by {{post.author}}</small>
     <small>at {{post.updated_at}}</small>
