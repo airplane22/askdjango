@@ -53,6 +53,16 @@
         </div>
     </nav>
 
+    {% if messages %}
+        <div class="container">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">
+            [{{ message.tags }}] {# 메세지 레벨 #}
+    {{ message.message }}
+            </div>{# 실제내용 #}
+    {% endfor %}
+        </div>
+    {% endif %}
 
 {% block content %}
 {% endblock %}
