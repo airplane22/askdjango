@@ -4,6 +4,7 @@ from . import views_cbv
 
 urlpatterns = [
     path('new/', views.post_new),
+    path('<int:id>/edit/', views.post_edit),
 
     re_path(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),
     #path('hello/<str:name>/<int:age>/', views.hello), #repath로 ㄱ-힣으로 name 한글 문자열 매칭으로 바꾸기!!
