@@ -8,6 +8,8 @@ from django.contrib import messages
 
 # Create your views here.
 def post_list(request):
+    # print(request.user)
+    # print(request.user.is_authenticated)
     qs = Post.objects.all() #아직 DB 접속 이루어지지 않음
 
 ##q 인자 가져오는법 다시보기!!!
