@@ -10,7 +10,7 @@ from django.views.generic import DetailView
 
 #step5
 post_detail = DetailView.as_view(model=Post)
-# urls.py 에서 id를 pk로 수정
+# urls.py 에서 id를 pk로 수정 / pk 는 기본 설정되어있음
 
 # step4
 # post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')  #pk_url_kwarg : path에서 전달받을 인자의 이름 path('<int:id>/'일 때 id)

@@ -6,6 +6,7 @@ from . import views_cbv
 
 urlpatterns = [
     path('', views.post_list, name='post_list'),
+    path('<pk>', views_cbv.post_detail, name='post_detail'),
     path('<id>', views.post_detail, name='post_detail'),
 
     path('new/', views.post_new, name='post_new'),
