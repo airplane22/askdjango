@@ -4,7 +4,7 @@ from . import views_cbv
 
 urlpatterns = [
     path('new/', views.post_new),
-    path('<int:id>', views.post_detail),
+    path('<pk>', views.post_detail),
     path('<int:id>/edit/', views.post_edit),
 
     re_path(r'^sum/(?P<numbers>[\d/]+)/$', views.mysum),

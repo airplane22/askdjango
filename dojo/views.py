@@ -8,7 +8,13 @@ from dojo.forms import PostForm
 from dojo.models import Post
 from django.views.generic import DetailView
 
-post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')
+#step5
+post_detail = DetailView.as_view(model=Post)
+# urls.py 에서 id를 pk로 수정
+
+# step4
+# post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')  #pk_url_kwarg : path에서 전달받을 인자의 이름 path('<int:id>/'일 때 id)
+
 
 # step3
 # class DetailView(object):
