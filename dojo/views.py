@@ -6,26 +6,30 @@ import os
 from django.http import JsonResponse, HttpResponse
 from dojo.forms import PostForm
 from dojo.models import Post
+from django.views.generic import DetailView
 
-class DetailView(object):
-    def __init__(self, model):
-        self.model = model
-    def get_object(self, *args, **kwargs):
-        return get_object_or_404(self.model, id=kwargs['id'])
-    def get_template_name(self):
-        return '{}/{}_detail.html'.format(self.model._meta.app_label, self.model._meta.model_name)
-    def dispatch(self, request, *args, **kwargs):
-        return render(request, self.get_template_name(), {
-            self.model._meta.model_name: self.get_object(*args, **kwargs),
-        })
-    @classmethod
-    def as_view(cls, model):
-        def view(request, *args, **kwargs):
-            self = cls(model)
-            return self.dispatch(request, *args, **kwargs)
-        return view
+post_detail = DetailView.as_view(model=Post, pk_url_kwarg='id')
 
-post_detail = DetailView.as_view(Post)  #CBV
+# step3
+# class DetailView(object):
+#     def __init__(self, model):
+#         self.model = model
+#     def get_object(self, *args, **kwargs):
+#         return get_object_or_404(self.model, id=kwargs['id'])
+#     def get_template_name(self):
+#         return '{}/{}_detail.html'.format(self.model._meta.app_label, self.model._meta.model_name)
+#     def dispatch(self, request, *args, **kwargs):
+#         return render(request, self.get_template_name(), {
+#             self.model._meta.model_name: self.get_object(*args, **kwargs),
+#         })
+#     @classmethod
+#     def as_view(cls, model):
+#         def view(request, *args, **kwargs):
+#             self = cls(model)
+#             return self.dispatch(request, *args, **kwargs)
+#         return view
+#
+# post_detail = DetailView.as_view(Post)  #CBV
 
 # step2
 # def generate_view_fn(model):
