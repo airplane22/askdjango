@@ -15,7 +15,7 @@
                 {% if post.photo %}  <!--문자열로 참거짓 판단-->
                     <img src="{{ post.photo.url }}" style="max-width: 100%;"/>
                     {% thumbnail "100x100" post.photo as thumb %}
-                    <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="thumb.height" />
+                    <img src="{{ thumb.url }}" width="{{ thumb.width }}" height="thumb.height" />  <!--안뜸-->
                     {% thumbnail "100x100" post.photo -- style="" onclick="" class="" %}
 
                 {% endif %}

@@ -8,6 +8,25 @@ from dojo.forms import PostForm
 from dojo.models import Post
 
 
+def generate_view_fn(model):
+    def view_fn(request, id):
+        instance = get_object_or_404(model, id=id)
+        instance_name = model._meta.model_name  #모델이름 소문자
+        template_name = '{}/{}_detail.html'.format(model._met.app_label, instance_name) #모델이 포함된 앱이름
+        return render(request, template_name, {
+            instance_name: instance,
+        })
+    return view_fn
+
+post_detail = generate_view_fn(Post)  #generate_view_fn 에서 나온 함수!
+
+# def post_detail(request, id):
+#     post = get_object_or_404(Post, id=id)
+#     return render(request, 'dojo/post_detail.html', {
+#         'post':post,
+#     })
+
+
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
