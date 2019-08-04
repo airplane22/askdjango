@@ -1,7 +1,8 @@
 from .models import Post
 from django import forms
-from django.views.generic import CreateView
+from django.views.generic import CreateView, ListView
 
+post_list = ListView.as_view(model=Post, paginate_by =3)  # /?page=2 로 다음 페이지 넘어갈 수 있음
 
 class PostForm(forms.ModelForm):
     class Meta:
