@@ -7,19 +7,40 @@ from django.http import JsonResponse, HttpResponse
 from dojo.forms import PostForm
 from dojo.models import Post
 
-
-def generate_view_fn(model):
-    def view_fn(request, id):
-        instance = get_object_or_404(model, id=id)
-        instance_name = model._meta.model_name  #모델이름 소문자
-        template_name = '{}/{}_detail.html'.format(model._met.app_label, instance_name) #모델이 포함된 앱이름
-        return render(request, template_name, {
-            instance_name: instance,
+class DetailView(object):
+    def __init__(self, model):
+        self.model = model
+    def get_object(self, *args, **kwargs):
+        return get_object_or_404(self.model, id=kwargs['id'])
+    def get_template_name(self):
+        return '{}/{}_detail.html'.format(self.model._meta.app_label, self.model._meta.model_name)
+    def dispatch(self, request, *args, **kwargs):
+        return render(request, self.get_template_name(), {
+            self.model._meta.model_name: self.get_object(*args, **kwargs),
         })
-    return view_fn
+    @classmethod
+    def as_view(cls, model):
+        def view(request, *args, **kwargs):
+            self = cls(model)
+            return self.dispatch(request, *args, **kwargs)
+        return view
 
-post_detail = generate_view_fn(Post)  #generate_view_fn 에서 나온 함수!
+post_detail = DetailView.as_view(Post)  #CBV
 
+# step2
+# def generate_view_fn(model):
+#     def view_fn(request, id):
+#         instance = get_object_or_404(model, id=id)
+#         instance_name = model._meta.model_name  #모델이름 소문자
+#         template_name = '{}/{}_detail.html'.format(model._met.app_label, instance_name) #모델이 포함된 앱이름
+#         return render(request, template_name, {
+#             instance_name: instance,
+#         })
+#     return view_fn
+#
+# post_detail = generate_view_fn(Post)  #generate_view_fn 에서 나온 함수!
+
+# step1.
 # def post_detail(request, id):
 #     post = get_object_or_404(Post, id=id)
 #     return render(request, 'dojo/post_detail.html', {
