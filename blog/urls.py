@@ -15,4 +15,5 @@ urlpatterns = [
     path('cbv/', views_cbv.post_list, name='post_list'),
     path('cbv/new/', views_cbv.post_new),
     path('cbv/<pk>/edit/', views_cbv.post_edit),
+    path('cbv/<pk>/delete/', views_cbv.post_delete),
 ]

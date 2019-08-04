@@ -1,6 +1,6 @@
 from .models import Post
 from django import forms
-from django.views.generic import CreateView, ListView, DetailView, UpdateView
+from django.views.generic import CreateView, ListView, DetailView, UpdateView, DeleteView
 
 post_list = ListView.as_view(model=Post, paginate_by =3)  # /?page=2 로 다음 페이지 넘어갈 수 있음
 
@@ -20,5 +20,6 @@ post_new = CreateView.as_view(model=Post) #success_url = '/blog/'
 
 post_edit = UpdateView.as_view(model=Post, fields='__all__')
 
+post_delete = DeleteView.as_view(model=Post, success_url='/blog/')
 
 #models.py 에서 get_absolute_url -- 자동으로 detail 화면으로 넘어감
